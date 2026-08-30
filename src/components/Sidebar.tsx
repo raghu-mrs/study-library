@@ -86,7 +86,6 @@ export default function Sidebar({ currentPage, onNavigate }: SidebarProps) {
             >
               <span style={{ fontSize: 15 }}>{subject.emoji}</span>
               {subject.name}
-              <span className="sidebar-badge">{subject.bookCount}</span>
             </button>
           ))}
           <button

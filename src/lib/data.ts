@@ -23,6 +23,7 @@ export interface Book {
   lastOpened?: string;
   importance?: 'important' | 'very-important' | 'revision' | 'completed';
   tags: string[];
+  pdfUrl?: string;
 }
 
 export interface Note {

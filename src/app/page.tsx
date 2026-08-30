@@ -111,6 +111,13 @@ export default function Home() {
       const subject = SUBJECTS.find(s => s.id === subjectId);
       const subjectBooks = books.filter(b => b.subjectId === subjectId);
       const subjectNotes = notes.filter(n => n.subjectId === subjectId);
+      
+      const bookCount = subjectBooks.length;
+      const noteCount = subjectNotes.length;
+      let totalP = 0, currentP = 0;
+      subjectBooks.forEach(b => { totalP += b.totalPages || 1; currentP += b.currentPage || 1; });
+      const progress = totalP > 0 ? Math.round((currentP / totalP) * 100) : 0;
+
       if (!subject) return <div>Subject not found</div>;
       return (
         <div className="page-container">
@@ -119,11 +126,11 @@ export default function Home() {
               <span style={{ fontSize: 32 }}>{subject.emoji}</span>
               <div>
                 <h2 className="page-title">{subject.name}</h2>
-                <p className="page-subtitle">{subject.bookCount} books · {subject.noteCount} notes · {subject.progress}% studied</p>
+                <p className="page-subtitle">{bookCount} books · {noteCount} notes · {progress}% studied</p>
               </div>
             </div>
             <div className="progress-bar-bg" style={{ maxWidth: 300 }}>
-              <div className="progress-bar-fill" style={{ width: `${subject.progress}%`, background: subject.color }} />
+              <div className="progress-bar-fill" style={{ width: `${progress}%`, background: subject.color }} />
             </div>
           </div>
 
